@@ -9,7 +9,7 @@ package edu.rosehulman.roblenomans;
 
 public final class R {
     public static final class array {
-        public static final int buildingNames=0x7f0a0000;
+        public static final int buildingNames=0x7f090000;
     }
     public static final class attr {
         /** 
@@ -385,40 +385,40 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010014;
     }
     public static final class color {
-        public static final int common_action_bar_splitter=0x7f080009;
+        public static final int common_action_bar_splitter=0x7f070009;
         /**  Sign-in Button Colors 
          */
-        public static final int common_signin_btn_dark_text_default=0x7f080000;
-        public static final int common_signin_btn_dark_text_disabled=0x7f080002;
-        public static final int common_signin_btn_dark_text_focused=0x7f080003;
-        public static final int common_signin_btn_dark_text_pressed=0x7f080001;
-        public static final int common_signin_btn_default_background=0x7f080008;
-        public static final int common_signin_btn_light_text_default=0x7f080004;
-        public static final int common_signin_btn_light_text_disabled=0x7f080006;
-        public static final int common_signin_btn_light_text_focused=0x7f080007;
-        public static final int common_signin_btn_light_text_pressed=0x7f080005;
-        public static final int common_signin_btn_text_dark=0x7f080017;
-        public static final int common_signin_btn_text_light=0x7f080018;
-        public static final int wallet_bright_foreground_disabled_holo_light=0x7f08000f;
+        public static final int common_signin_btn_dark_text_default=0x7f070000;
+        public static final int common_signin_btn_dark_text_disabled=0x7f070002;
+        public static final int common_signin_btn_dark_text_focused=0x7f070003;
+        public static final int common_signin_btn_dark_text_pressed=0x7f070001;
+        public static final int common_signin_btn_default_background=0x7f070008;
+        public static final int common_signin_btn_light_text_default=0x7f070004;
+        public static final int common_signin_btn_light_text_disabled=0x7f070006;
+        public static final int common_signin_btn_light_text_focused=0x7f070007;
+        public static final int common_signin_btn_light_text_pressed=0x7f070005;
+        public static final int common_signin_btn_text_dark=0x7f070017;
+        public static final int common_signin_btn_text_light=0x7f070018;
+        public static final int wallet_bright_foreground_disabled_holo_light=0x7f07000f;
         /** 
          Wallet colors to support consistent Wallet fragment holo dark UI in client application
          regardless of the theme and device type
     
          */
-        public static final int wallet_bright_foreground_holo_dark=0x7f08000a;
-        public static final int wallet_bright_foreground_holo_light=0x7f080010;
-        public static final int wallet_dim_foreground_disabled_holo_dark=0x7f08000c;
-        public static final int wallet_dim_foreground_holo_dark=0x7f08000b;
-        public static final int wallet_dim_foreground_inverse_disabled_holo_dark=0x7f08000e;
-        public static final int wallet_dim_foreground_inverse_holo_dark=0x7f08000d;
-        public static final int wallet_highlighted_text_holo_dark=0x7f080014;
-        public static final int wallet_highlighted_text_holo_light=0x7f080013;
-        public static final int wallet_hint_foreground_holo_dark=0x7f080012;
-        public static final int wallet_hint_foreground_holo_light=0x7f080011;
-        public static final int wallet_holo_blue_light=0x7f080015;
-        public static final int wallet_link_text_light=0x7f080016;
-        public static final int wallet_primary_text_holo_light=0x7f080019;
-        public static final int wallet_secondary_text_holo_dark=0x7f08001a;
+        public static final int wallet_bright_foreground_holo_dark=0x7f07000a;
+        public static final int wallet_bright_foreground_holo_light=0x7f070010;
+        public static final int wallet_dim_foreground_disabled_holo_dark=0x7f07000c;
+        public static final int wallet_dim_foreground_holo_dark=0x7f07000b;
+        public static final int wallet_dim_foreground_inverse_disabled_holo_dark=0x7f07000e;
+        public static final int wallet_dim_foreground_inverse_holo_dark=0x7f07000d;
+        public static final int wallet_highlighted_text_holo_dark=0x7f070014;
+        public static final int wallet_highlighted_text_holo_light=0x7f070013;
+        public static final int wallet_hint_foreground_holo_dark=0x7f070012;
+        public static final int wallet_hint_foreground_holo_light=0x7f070011;
+        public static final int wallet_holo_blue_light=0x7f070015;
+        public static final int wallet_link_text_light=0x7f070016;
+        public static final int wallet_primary_text_holo_light=0x7f070019;
+        public static final int wallet_secondary_text_holo_dark=0x7f07001a;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -428,14 +428,14 @@ containing a value of this type.
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f0b0000;
-        public static final int activity_vertical_margin=0x7f0b0001;
+        public static final int activity_horizontal_margin=0x7f0a0000;
+        public static final int activity_vertical_margin=0x7f0a0001;
         /** 
          Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html
     
          */
-        public static final int navigation_drawer_width=0x7f0b0002;
+        public static final int navigation_drawer_width=0x7f0a0002;
     }
     public static final class drawable {
         public static final int coin_icon=0x7f020000;
@@ -479,47 +479,47 @@ containing a value of this type.
         public static final int wood_icon=0x7f020026;
     }
     public static final class id {
-        public static final int action_example=0x7f070025;
-        public static final int action_settings=0x7f070024;
-        public static final int adjust_height=0x7f070002;
-        public static final int adjust_width=0x7f070001;
-        public static final int book_now=0x7f070012;
-        public static final int buyButton=0x7f07000c;
-        public static final int buy_now=0x7f070011;
-        public static final int buy_with_google=0x7f070010;
-        public static final int classic=0x7f070014;
-        public static final int donate_with_google=0x7f070013;
-        public static final int drawer_layout=0x7f070017;
-        public static final int grayscale=0x7f070015;
-        public static final int holo_dark=0x7f070007;
-        public static final int holo_light=0x7f070008;
-        public static final int hybrid=0x7f070006;
-        public static final int icon_gold=0x7f07001c;
-        public static final int icon_grain=0x7f070022;
-        public static final int icon_iron=0x7f070020;
-        public static final int icon_wood=0x7f07001e;
-        public static final int map=0x7f07001a;
-        public static final int map_container=0x7f070019;
-        public static final int match_parent=0x7f07000e;
-        public static final int monochrome=0x7f070016;
-        public static final int navigation_drawer=0x7f07001b;
-        public static final int none=0x7f070000;
-        public static final int normal=0x7f070003;
-        public static final int production=0x7f070009;
-        public static final int resource_amount_gold=0x7f07001d;
-        public static final int resource_amount_grain=0x7f070023;
-        public static final int resource_amount_iron=0x7f070021;
-        public static final int resource_amount_wood=0x7f07001f;
-        public static final int resource_bar=0x7f070018;
-        public static final int sandbox=0x7f07000a;
-        public static final int satellite=0x7f070004;
-        public static final int selectionDetails=0x7f07000d;
-        public static final int strict_sandbox=0x7f07000b;
-        public static final int terrain=0x7f070005;
-        public static final int wrap_content=0x7f07000f;
+        public static final int action_example=0x7f0c0025;
+        public static final int action_settings=0x7f0c0024;
+        public static final int adjust_height=0x7f0c0000;
+        public static final int adjust_width=0x7f0c0001;
+        public static final int book_now=0x7f0c0010;
+        public static final int buyButton=0x7f0c000c;
+        public static final int buy_now=0x7f0c0011;
+        public static final int buy_with_google=0x7f0c0012;
+        public static final int classic=0x7f0c0014;
+        public static final int donate_with_google=0x7f0c0013;
+        public static final int drawer_layout=0x7f0c0017;
+        public static final int grayscale=0x7f0c0015;
+        public static final int holo_dark=0x7f0c0007;
+        public static final int holo_light=0x7f0c0008;
+        public static final int hybrid=0x7f0c0003;
+        public static final int icon_gold=0x7f0c001c;
+        public static final int icon_grain=0x7f0c0022;
+        public static final int icon_iron=0x7f0c0020;
+        public static final int icon_wood=0x7f0c001e;
+        public static final int map=0x7f0c001a;
+        public static final int map_container=0x7f0c0019;
+        public static final int match_parent=0x7f0c000e;
+        public static final int monochrome=0x7f0c0016;
+        public static final int navigation_drawer=0x7f0c001b;
+        public static final int none=0x7f0c0002;
+        public static final int normal=0x7f0c0004;
+        public static final int production=0x7f0c0009;
+        public static final int resource_amount_gold=0x7f0c001d;
+        public static final int resource_amount_grain=0x7f0c0023;
+        public static final int resource_amount_iron=0x7f0c0021;
+        public static final int resource_amount_wood=0x7f0c001f;
+        public static final int resource_bar=0x7f0c0018;
+        public static final int sandbox=0x7f0c000a;
+        public static final int satellite=0x7f0c0005;
+        public static final int selectionDetails=0x7f0c000d;
+        public static final int strict_sandbox=0x7f0c000b;
+        public static final int terrain=0x7f0c0006;
+        public static final int wrap_content=0x7f0c000f;
     }
     public static final class integer {
-        public static final int google_play_services_version=0x7f090000;
+        public static final int google_play_services_version=0x7f080000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -528,8 +528,8 @@ containing a value of this type.
         public static final int resource_bar=0x7f030003;
     }
     public static final class menu {
-        public static final int global=0x7f0c0000;
-        public static final int main=0x7f0c0001;
+        public static final int global=0x7f0b0000;
+        public static final int main=0x7f0b0001;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f040000;
@@ -539,6 +539,7 @@ containing a value of this type.
         public static final int action_example=0x7f060029;
         public static final int action_settings=0x7f06002a;
         public static final int app_name=0x7f060023;
+        public static final int barracks_name=0x7f060031;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
          */
         public static final int common_android_wear_notification_needs_update_text=0x7f060009;
@@ -641,8 +642,10 @@ containing a value of this type.
         public static final int create_calendar_message=0x7f060005;
         public static final int create_calendar_title=0x7f060004;
         public static final int decline=0x7f060003;
+        public static final int forester_name=0x7f060030;
         public static final int gold=0x7f06002b;
         public static final int iron=0x7f06002d;
+        public static final int iron_mine_name=0x7f06002f;
         public static final int navigation_drawer_close=0x7f060028;
         public static final int navigation_drawer_open=0x7f060027;
         public static final int store_picture_message=0x7f060001;

@@ -13,5 +13,8 @@
     <string name="wood">wood</string>
     <string name="iron">iron</string>
     <string name="wheat">wheat</string>
+    <string name="iron_mine_name">Iron Mine</string>
+    <string name="forester_name">Forester</string>
+    <string name="barracks_name">Barracks</string>
 
 </resources>

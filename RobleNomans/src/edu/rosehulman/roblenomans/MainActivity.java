@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
@@ -38,6 +39,7 @@ public class MainActivity extends Activity
 	private MapFragment mMapFragment;
 	private ArrayList<Building> mBuildings;
 	private String[] mBuildingNames;
+	private GoogleMap mMap;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -60,16 +62,13 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         
         
         mTitle = getTitle();
 
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));        
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));        
         
         FragmentManager fragMan= getFragmentManager();
         FragmentTransaction ft= fragMan.beginTransaction();
@@ -90,8 +89,8 @@ public class MainActivity extends Activity
         mBuildings = new ArrayList<Building>();
         
         mBuildingNames = getResources().getStringArray(R.array.buildingNames);
-
     }
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -192,9 +191,9 @@ public class MainActivity extends Activity
 
 	@Override
 	public void onMapReady(GoogleMap map) {
+		mMap = map;
 		for(Building b : mBuildings){
 			b.setMarker(map.addMarker(b.getMarkerOptions()));
-			b.setRandomLocation();
 		}
 		
 		map.setOnMarkerClickListener(new OnMarkerClickListener() {
@@ -223,7 +222,7 @@ public class MainActivity extends Activity
 				public Dialog onCreateDialog(Bundle savedInstanceState) {
 					AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
 
-					String title = "Building " + building.getMarker().getId();
+					String title = getString(building.getBuildingTitleResourceID());
 					
 					b.setTitle(title);
 					
@@ -238,7 +237,7 @@ public class MainActivity extends Activity
 			df.show(getFragmentManager(), "building");
 	}
 	
-	protected void placeBuilding(LatLng point) {
+	protected void placeBuilding(final LatLng point) {
 		DialogFragment df = new DialogFragment() {
 			@Override
 			public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -251,7 +250,9 @@ public class MainActivity extends Activity
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						Toast.makeText(getBaseContext(), mBuildingNames[which], Toast.LENGTH_SHORT).show();
+						Building b = new Building(point, which);
+						mBuildings.add(b);
+						b.setMarker(mMap.addMarker(b.getMarkerOptions()));
 					}
 				});
 				
