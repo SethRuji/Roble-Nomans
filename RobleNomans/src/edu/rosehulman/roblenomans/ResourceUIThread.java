@@ -21,12 +21,21 @@ public class ResourceUIThread implements Runnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		TextView goldTV= (TextView)mActivity.findViewById(R.id.resource_amount_gold);
+		
 		ResourceEngine resources= mActivity.mGame.getmResourceEngine();
 		
+		TextView goldTV= (TextView)mActivity.findViewById(R.id.resource_amount_gold);
 		goldTV.setText(Utils.ConvertBigInt(resources.getmGold()));
-//		Log.d("ResourceUI Update", "Gold: "+ Utils.ConvertBigInt(resources.getmGold()));
+		
+		TextView woodTV= (TextView)mActivity.findViewById(R.id.resource_amount_wood);
+		woodTV.setText(Utils.ConvertBigInt(resources.getmWood()));
+		
+		TextView ironTV= (TextView)mActivity.findViewById(R.id.resource_amount_iron);
+		ironTV.setText(Utils.ConvertBigInt(resources.getmIron()));
+		
+		TextView wheatTV= (TextView)mActivity.findViewById(R.id.resource_amount_grain);
+		wheatTV.setText(Utils.ConvertBigInt(resources.getmWheat()));
+
 		mHandler.postDelayed(this, 1000);	
 	}
 

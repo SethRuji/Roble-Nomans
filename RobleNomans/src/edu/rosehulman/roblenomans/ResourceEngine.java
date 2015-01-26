@@ -53,9 +53,9 @@ public class ResourceEngine implements Runnable {
 	private long mWheat= 10;
 	
 	private long goldRate= 100;
-	private long ironRate= 0;
-	private long woodRate= 0;
-	private long wheatRate= 0;
+	private long ironRate= 1;
+	private long woodRate= 2;
+	private long wheatRate= 1;
 	private Handler h;
 	
 	private TextView mIronTV;
