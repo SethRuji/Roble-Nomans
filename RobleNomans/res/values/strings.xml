@@ -13,17 +13,14 @@
     <string name="wood">wood</string>
     <string name="iron">iron</string>
     <string name="wheat">wheat</string>
-<<<<<<< HEAD
     <string name="iron_mine_name">Iron Mine</string>
     <string name="forester_name">Forester</string>
     <string name="barracks_name">Barracks</string>
-=======
     <string name="raw_settings">Settings</string>
     <string name="raw_buildings">Buildings</string>
     <string name="raw_attack">Attack</string>
     <string name="raw_resources">Resources</string>
     <string name="raw_messages">Messages</string>
     <string name="raw_friends">friends</string>
->>>>>>> 001f397d22e596ced4643c87ddf4990c3295e732
 
 </resources>
