@@ -13,5 +13,11 @@
     <string name="wood">wood</string>
     <string name="iron">iron</string>
     <string name="wheat">wheat</string>
+    <string name="raw_settings">Settings</string>
+    <string name="raw_buildings">Buildings</string>
+    <string name="raw_attack">Attack</string>
+    <string name="raw_resources">Resources</string>
+    <string name="raw_messages">Messages</string>
+    <string name="raw_friends">friends</string>
 
 </resources>

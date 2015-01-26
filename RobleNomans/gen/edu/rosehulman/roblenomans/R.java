@@ -479,8 +479,8 @@ containing a value of this type.
         public static final int wood_icon=0x7f020026;
     }
     public static final class id {
-        public static final int action_example=0x7f070025;
-        public static final int action_settings=0x7f070024;
+        public static final int action_example=0x7f070026;
+        public static final int action_settings=0x7f070025;
         public static final int adjust_height=0x7f070002;
         public static final int adjust_width=0x7f070001;
         public static final int book_now=0x7f070012;
@@ -494,10 +494,10 @@ containing a value of this type.
         public static final int holo_dark=0x7f070007;
         public static final int holo_light=0x7f070008;
         public static final int hybrid=0x7f070006;
-        public static final int icon_gold=0x7f07001c;
-        public static final int icon_grain=0x7f070022;
-        public static final int icon_iron=0x7f070020;
-        public static final int icon_wood=0x7f07001e;
+        public static final int icon_gold=0x7f07001d;
+        public static final int icon_grain=0x7f070023;
+        public static final int icon_iron=0x7f070021;
+        public static final int icon_wood=0x7f07001f;
         public static final int map=0x7f07001a;
         public static final int map_container=0x7f070019;
         public static final int match_parent=0x7f07000e;
@@ -506,16 +506,17 @@ containing a value of this type.
         public static final int none=0x7f070000;
         public static final int normal=0x7f070003;
         public static final int production=0x7f070009;
-        public static final int resource_amount_gold=0x7f07001d;
-        public static final int resource_amount_grain=0x7f070023;
-        public static final int resource_amount_iron=0x7f070021;
-        public static final int resource_amount_wood=0x7f07001f;
+        public static final int resource_amount_gold=0x7f07001e;
+        public static final int resource_amount_grain=0x7f070024;
+        public static final int resource_amount_iron=0x7f070022;
+        public static final int resource_amount_wood=0x7f070020;
         public static final int resource_bar=0x7f070018;
         public static final int sandbox=0x7f07000a;
         public static final int satellite=0x7f070004;
         public static final int selectionDetails=0x7f07000d;
         public static final int strict_sandbox=0x7f07000b;
         public static final int terrain=0x7f070005;
+        public static final int textView1=0x7f07001c;
         public static final int wrap_content=0x7f07000f;
     }
     public static final class integer {
@@ -525,7 +526,9 @@ containing a value of this type.
         public static final int activity_main=0x7f030000;
         public static final int fragment_main=0x7f030001;
         public static final int fragment_navigation_drawer=0x7f030002;
-        public static final int resource_bar=0x7f030003;
+        public static final int fragment_resource=0x7f030003;
+        public static final int fragment_settings=0x7f030004;
+        public static final int resource_bar=0x7f030005;
     }
     public static final class menu {
         public static final int global=0x7f0c0000;
@@ -645,6 +648,12 @@ containing a value of this type.
         public static final int iron=0x7f06002d;
         public static final int navigation_drawer_close=0x7f060028;
         public static final int navigation_drawer_open=0x7f060027;
+        public static final int raw_attack=0x7f060031;
+        public static final int raw_buildings=0x7f060030;
+        public static final int raw_friends=0x7f060034;
+        public static final int raw_messages=0x7f060033;
+        public static final int raw_resources=0x7f060032;
+        public static final int raw_settings=0x7f06002f;
         public static final int store_picture_message=0x7f060001;
         public static final int store_picture_title=0x7f060000;
         public static final int title_section1=0x7f060024;
