@@ -187,6 +187,7 @@ int string create_calendar_message 0x7f060005
 int string create_calendar_title 0x7f060004
 int string decline 0x7f060003
 int string gold 0x7f06002b
+int string iron 0x7f06002d
 int string navigation_drawer_close 0x7f060028
 int string navigation_drawer_open 0x7f060027
 int string store_picture_message 0x7f060001
@@ -195,6 +196,8 @@ int string title_section1 0x7f060024
 int string title_section2 0x7f060025
 int string title_section3 0x7f060026
 int string wallet_buy_button_place_holder 0x7f060022
+int string wheat 0x7f06002e
+int string wood 0x7f06002c
 int style AppBaseTheme 0x7f050005
 int style AppTheme 0x7f050006
 int style Theme_IAPTheme 0x7f050000

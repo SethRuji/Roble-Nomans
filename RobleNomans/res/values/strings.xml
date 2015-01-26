@@ -10,5 +10,8 @@
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
     <string name="gold">Gold</string>
+    <string name="wood">wood</string>
+    <string name="iron">iron</string>
+    <string name="wheat">wheat</string>
 
 </resources>

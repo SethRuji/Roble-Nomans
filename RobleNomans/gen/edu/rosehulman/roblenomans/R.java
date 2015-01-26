@@ -640,6 +640,7 @@ containing a value of this type.
         public static final int create_calendar_title=0x7f060004;
         public static final int decline=0x7f060003;
         public static final int gold=0x7f06002b;
+        public static final int iron=0x7f06002d;
         public static final int navigation_drawer_close=0x7f060028;
         public static final int navigation_drawer_open=0x7f060027;
         public static final int store_picture_message=0x7f060001;
@@ -651,6 +652,8 @@ containing a value of this type.
          available or up-to-date 
          */
         public static final int wallet_buy_button_place_holder=0x7f060022;
+        public static final int wheat=0x7f06002e;
+        public static final int wood=0x7f06002c;
     }
     public static final class style {
         /** 

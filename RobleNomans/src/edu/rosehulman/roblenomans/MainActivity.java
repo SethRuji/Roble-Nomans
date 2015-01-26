@@ -6,12 +6,14 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity
@@ -29,11 +31,15 @@ public class MainActivity extends Activity
 
 	private ResourceFragment mResourceFrag;
 
+	public GameState mGame;
+
+	private Handler mResourceUIHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         
@@ -48,11 +54,17 @@ public class MainActivity extends Activity
         
         FragmentManager fragMan= getFragmentManager();
         FragmentTransaction ft= fragMan.beginTransaction();
-        
-        mResourceFrag= new ResourceFragment();
+                            
+        mResourceFrag= new ResourceFragment();               
         
         ft.add(R.id.resource_bar, mResourceFrag);        
-        ft.commit();
+        ft.commit(); 
+        
+        mGame= new GameState();
+        
+        mResourceUIHandler = new Handler();
+        mResourceUIHandler.postDelayed(new ResourceUIThread(this, mResourceUIHandler), 1000);        		
+        
     }
 
     @Override
@@ -140,6 +152,7 @@ public class MainActivity extends Activity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                        
             return rootView;
         }
 
@@ -150,5 +163,4 @@ public class MainActivity extends Activity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
-
 }
