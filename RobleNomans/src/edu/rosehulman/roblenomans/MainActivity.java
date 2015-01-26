@@ -33,6 +33,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
+import edu.rosehulman.roblenomans.contentfrags.MainResourceFragment;
+import edu.rosehulman.roblenomans.contentfrags.MainSettingFragment;
+
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnMapReadyCallback{
 	
@@ -94,6 +97,32 @@ public class MainActivity extends Activity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+    	Fragment mainContentFrag=null;    
+    	
+    	switch(position){
+    	case 0://buildings
+    		Toast.makeText(MainActivity.this, "buildings", Toast.LENGTH_SHORT).show();
+    		mainContentFrag= new MainResourceFragment();
+    		break;
+    	case 1://attack
+    		Toast.makeText(MainActivity.this, "attack", Toast.LENGTH_SHORT).show();
+    		mainContentFrag= new MainResourceFragment();
+    		break;	
+    	case 2://resources
+    		Toast.makeText(MainActivity.this, "resources", Toast.LENGTH_SHORT).show();
+    		mainContentFrag= new MainResourceFragment();
+    		break;
+    	case 3://messages
+    		mainContentFrag= new MainResourceFragment();
+    		break;
+    	case 4://friends
+    		mainContentFrag= new MainResourceFragment();
+    		break;
+    	case 5://settings
+    		mainContentFrag= new MainSettingFragment();
+    		break;
+    	}    	
+    	
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
@@ -104,13 +133,22 @@ public class MainActivity extends Activity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = getString(R.string.raw_buildings);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+            	mTitle = getString(R.string.raw_attack);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+            	mTitle = getString(R.string.raw_resources);
+                break;
+            case 4:
+            	mTitle = getString(R.string.raw_messages);
+                break;
+            case 5:
+            	mTitle = getString(R.string.raw_friends);
+                break;
+            case 6:
+            	mTitle = getString(R.string.raw_settings);
                 break;
         }
     }
@@ -177,7 +215,7 @@ public class MainActivity extends Activity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-                        
+            
             return rootView;
         }
 
