@@ -1,10 +1,19 @@
 package edu.rosehulman.roblenomans;
 
+
+import java.util.ArrayList;
+
+import android.R.string;
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
@@ -13,11 +22,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
 public class MainActivity extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnMapReadyCallback{
+	
+	private MapFragment mMapFragment;
+	private ArrayList<Building> mBuildings;
+	private String[] mBuildingNames;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -49,8 +69,7 @@ public class MainActivity extends Activity
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
-        
+                (DrawerLayout) findViewById(R.id.drawer_layout));        
         
         FragmentManager fragMan= getFragmentManager();
         FragmentTransaction ft= fragMan.beginTransaction();
@@ -65,6 +84,13 @@ public class MainActivity extends Activity
         mResourceUIHandler = new Handler();
         mResourceUIHandler.postDelayed(new ResourceUIThread(this, mResourceUIHandler), 1000);        		
         
+        mMapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        mMapFragment.getMapAsync(this);
+        
+        mBuildings = new ArrayList<Building>();
+        
+        mBuildingNames = getResources().getStringArray(R.array.buildingNames);
+
     }
 
     @Override
@@ -163,4 +189,76 @@ public class MainActivity extends Activity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
+	@Override
+	public void onMapReady(GoogleMap map) {
+		for(Building b : mBuildings){
+			b.setMarker(map.addMarker(b.getMarkerOptions()));
+			b.setRandomLocation();
+		}
+		
+		map.setOnMarkerClickListener(new OnMarkerClickListener() {
+			@Override
+			public boolean onMarkerClick(Marker marker) {
+				Building building = mBuildings.get(marker.getId().charAt(1)-'0');
+				displayBuildingDialog(building);
+				
+				return true;
+			}
+		});
+		
+		map.setOnMapLongClickListener(new OnMapLongClickListener() {
+			
+			@Override
+			public void onMapLongClick(LatLng point) {
+				placeBuilding(point);
+			}
+		});
+	}
+
+	protected void displayBuildingDialog(final Building building) {
+			DialogFragment df = new DialogFragment() {
+				@SuppressLint("InflateParams")
+				@Override
+				public Dialog onCreateDialog(Bundle savedInstanceState) {
+					AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+
+					String title = "Building " + building.getMarker().getId();
+					
+					b.setTitle(title);
+					
+					b.setNegativeButton(string.cancel, null);
+					
+					b.setPositiveButton(string.ok, null);
+					
+					return b.create();
+				}
+			};
+			
+			df.show(getFragmentManager(), "building");
+	}
+	
+	protected void placeBuilding(LatLng point) {
+		DialogFragment df = new DialogFragment() {
+			@Override
+			public Dialog onCreateDialog(Bundle savedInstanceState) {
+				AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+				
+				b.setTitle("Choose a building");
+				
+
+				b.setItems(getResources().getStringArray(R.array.buildingNames), new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Toast.makeText(getBaseContext(), mBuildingNames[which], Toast.LENGTH_SHORT).show();
+					}
+				});
+				
+				return b.create();
+			}
+		};
+		
+		df.show(getFragmentManager(), "build");
+	}
 }

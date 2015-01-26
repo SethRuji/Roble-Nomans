@@ -8,6 +8,9 @@
 package edu.rosehulman.roblenomans;
 
 public final class R {
+    public static final class array {
+        public static final int buildingNames=0x7f0a0000;
+    }
     public static final class attr {
         /** 
     The size of the ad. It must be one of BANNER, FULL_BANNER, LEADERBOARD,
@@ -425,14 +428,14 @@ containing a value of this type.
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f0a0000;
-        public static final int activity_vertical_margin=0x7f0a0001;
+        public static final int activity_horizontal_margin=0x7f0b0000;
+        public static final int activity_vertical_margin=0x7f0b0001;
         /** 
          Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html
     
          */
-        public static final int navigation_drawer_width=0x7f0a0002;
+        public static final int navigation_drawer_width=0x7f0b0002;
     }
     public static final class drawable {
         public static final int coin_icon=0x7f020000;
@@ -476,8 +479,8 @@ containing a value of this type.
         public static final int wood_icon=0x7f020026;
     }
     public static final class id {
-        public static final int action_example=0x7f070026;
-        public static final int action_settings=0x7f070025;
+        public static final int action_example=0x7f070025;
+        public static final int action_settings=0x7f070024;
         public static final int adjust_height=0x7f070002;
         public static final int adjust_width=0x7f070001;
         public static final int book_now=0x7f070012;
@@ -491,10 +494,10 @@ containing a value of this type.
         public static final int holo_dark=0x7f070007;
         public static final int holo_light=0x7f070008;
         public static final int hybrid=0x7f070006;
-        public static final int icon_gold=0x7f07001d;
-        public static final int icon_grain=0x7f070023;
-        public static final int icon_iron=0x7f070021;
-        public static final int icon_wood=0x7f07001f;
+        public static final int icon_gold=0x7f07001c;
+        public static final int icon_grain=0x7f070022;
+        public static final int icon_iron=0x7f070020;
+        public static final int icon_wood=0x7f07001e;
         public static final int map=0x7f07001a;
         public static final int map_container=0x7f070019;
         public static final int match_parent=0x7f07000e;
@@ -503,14 +506,13 @@ containing a value of this type.
         public static final int none=0x7f070000;
         public static final int normal=0x7f070003;
         public static final int production=0x7f070009;
-        public static final int resource_amount_gold=0x7f07001e;
-        public static final int resource_amount_grain=0x7f070024;
-        public static final int resource_amount_iron=0x7f070022;
-        public static final int resource_amount_wood=0x7f070020;
+        public static final int resource_amount_gold=0x7f07001d;
+        public static final int resource_amount_grain=0x7f070023;
+        public static final int resource_amount_iron=0x7f070021;
+        public static final int resource_amount_wood=0x7f07001f;
         public static final int resource_bar=0x7f070018;
         public static final int sandbox=0x7f07000a;
         public static final int satellite=0x7f070004;
-        public static final int section_label=0x7f07001c;
         public static final int selectionDetails=0x7f07000d;
         public static final int strict_sandbox=0x7f07000b;
         public static final int terrain=0x7f070005;
@@ -526,8 +528,8 @@ containing a value of this type.
         public static final int resource_bar=0x7f030003;
     }
     public static final class menu {
-        public static final int global=0x7f0b0000;
-        public static final int main=0x7f0b0001;
+        public static final int global=0x7f0c0000;
+        public static final int main=0x7f0c0001;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f040000;
