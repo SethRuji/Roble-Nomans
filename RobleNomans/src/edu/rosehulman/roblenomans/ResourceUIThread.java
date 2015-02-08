@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.games.Game;
 
+import edu.rosehulman.roblenomans.Activities.MainActivity;
 import edu.rosehulman.roblenomans.common.Utils;
 
 public class ResourceUIThread implements Runnable{

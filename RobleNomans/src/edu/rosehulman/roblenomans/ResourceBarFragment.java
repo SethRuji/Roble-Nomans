@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ResourceFragment extends Fragment implements OnClickListener {	
+public class ResourceBarFragment extends Fragment implements OnClickListener {	
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

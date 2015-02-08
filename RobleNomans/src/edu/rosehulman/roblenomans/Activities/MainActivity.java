@@ -1,4 +1,4 @@
-package edu.rosehulman.roblenomans;
+package edu.rosehulman.roblenomans.Activities;
 
 
 import java.util.ArrayList;
@@ -27,14 +27,18 @@ import android.widget.Toast;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
-import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
+import edu.rosehulman.roblenomans.Building;
+import edu.rosehulman.roblenomans.GameState;
+import edu.rosehulman.roblenomans.NavigationDrawerFragment;
+import edu.rosehulman.roblenomans.R;
+import edu.rosehulman.roblenomans.ResourceBarFragment;
+import edu.rosehulman.roblenomans.ResourceUIThread;
 import edu.rosehulman.roblenomans.contentfrags.MainResourceFragment;
-import edu.rosehulman.roblenomans.contentfrags.MainSettingFragment;
 
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnMapReadyCallback{
@@ -54,7 +58,7 @@ public class MainActivity extends Activity
      */
     private CharSequence mTitle;
 
-	private ResourceFragment mResourceFrag;
+	private ResourceBarFragment mResourceFrag;
 
 	public GameState mGame;
 
@@ -67,18 +71,19 @@ public class MainActivity extends Activity
         
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         
-        
+        mMapFragment= new MapFragment();
+        mResourceFrag= new ResourceBarFragment();
         mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));        
         
         FragmentManager fragMan= getFragmentManager();
-        FragmentTransaction ft= fragMan.beginTransaction();
-                            
-        mResourceFrag= new ResourceFragment();               
+        FragmentTransaction ft= fragMan.beginTransaction();                                                   
         
         ft.add(R.id.resource_bar, mResourceFrag);        
+        ft.add(R.id.main_content_container, mMapFragment);
+        
         ft.commit(); 
         
         mGame= new GameState();
@@ -86,7 +91,6 @@ public class MainActivity extends Activity
         mResourceUIHandler = new Handler();
         mResourceUIHandler.postDelayed(new ResourceUIThread(this, mResourceUIHandler), 1000);        		
         
-        mMapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mMapFragment.getMapAsync(this);
         
         mBuildings = new ArrayList<Building>();
@@ -97,36 +101,36 @@ public class MainActivity extends Activity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-    	Fragment mainContentFrag=null;    
+    	Fragment mainContentFrag= PlaceholderFragment.newInstance(position+1);        	
     	
     	switch(position){
     	case 0://buildings
     		Toast.makeText(MainActivity.this, "buildings", Toast.LENGTH_SHORT).show();
-    		mainContentFrag= new MainResourceFragment();
+    		if(mMapFragment!=null){
+    			mainContentFrag=mMapFragment;
+    		}
     		break;
     	case 1://attack
     		Toast.makeText(MainActivity.this, "attack", Toast.LENGTH_SHORT).show();
-    		mainContentFrag= new MainResourceFragment();
+    		
     		break;	
     	case 2://resources
     		Toast.makeText(MainActivity.this, "resources", Toast.LENGTH_SHORT).show();
     		mainContentFrag= new MainResourceFragment();
     		break;
     	case 3://messages
-    		mainContentFrag= new MainResourceFragment();
     		break;
     	case 4://friends
-    		mainContentFrag= new MainResourceFragment();
     		break;
     	case 5://settings
-    		mainContentFrag= new MainSettingFragment();
     		break;
+    		
     	}    	
     	
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.map_container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.main_content_container, mainContentFrag)
                 .commit();
     }
 

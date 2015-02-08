@@ -21,6 +21,9 @@
     <string name="raw_attack">Attack</string>
     <string name="raw_resources">Resources</string>
     <string name="raw_messages">Messages</string>
+    <string name="raw_map">Map</string>
     <string name="raw_friends">friends</string>
+    <string name="title_activity_resource">ResourceActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
