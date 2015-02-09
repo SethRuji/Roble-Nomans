@@ -39,6 +39,8 @@ import edu.rosehulman.roblenomans.R;
 import edu.rosehulman.roblenomans.ResourceBarFragment;
 import edu.rosehulman.roblenomans.ResourceUIThread;
 import edu.rosehulman.roblenomans.contentfrags.MainResourceFragment;
+import edu.rosehulman.roblenomans.contentfrags.MainSettingFragment;
+import edu.rosehulman.roblenomans.contentfrags.MainUnitsFragment;
 
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnMapReadyCallback{
@@ -93,8 +95,7 @@ public class MainActivity extends Activity
         
         mMapFragment.getMapAsync(this);
         
-        mBuildings = new ArrayList<Building>();
-        
+        mBuildings = new ArrayList<Building>();        
         mBuildingNames = getResources().getStringArray(R.array.buildingNames);
     }
 
@@ -109,10 +110,9 @@ public class MainActivity extends Activity
     		if(mMapFragment!=null){
     			mainContentFrag=mMapFragment;
     		}
-    		break;
+    		break;    		
     	case 1://attack
-    		Toast.makeText(MainActivity.this, "attack", Toast.LENGTH_SHORT).show();
-    		
+    		Toast.makeText(MainActivity.this, "attack", Toast.LENGTH_SHORT).show();    		
     		break;	
     	case 2://resources
     		Toast.makeText(MainActivity.this, "resources", Toast.LENGTH_SHORT).show();
@@ -123,8 +123,11 @@ public class MainActivity extends Activity
     	case 4://friends
     		break;
     	case 5://settings
+    		mainContentFrag= new MainSettingFragment();
     		break;
-    		
+    	case 6://units
+    		mainContentFrag= new MainUnitsFragment();
+    		break;
     	}    	
     	
         // update the main content by replacing fragments
@@ -153,6 +156,9 @@ public class MainActivity extends Activity
                 break;
             case 6:
             	mTitle = getString(R.string.raw_settings);
+                break;
+            case 7:
+            	mTitle = getString(R.string.raw_units);
                 break;
         }
     }
