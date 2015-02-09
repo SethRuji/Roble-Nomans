@@ -5,4 +5,5 @@ public interface Unit {
 	public int getAttackPower();
 	public int getHP();
 	public String getDescription();
+	public long[] getIncome();
 }

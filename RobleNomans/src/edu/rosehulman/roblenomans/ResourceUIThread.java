@@ -25,16 +25,16 @@ public class ResourceUIThread implements Runnable{
 		
 		ResourceEngine resources= mActivity.mGame.getmResourceEngine();
 		
-		TextView goldTV= (TextView)mActivity.findViewById(R.id.resource_amount_gold);
+		TextView goldTV = (TextView)mActivity.findViewById(R.id.resource_amount_gold);
 		goldTV.setText(Utils.ConvertBigInt(resources.getmGold()));
 		
-		TextView woodTV= (TextView)mActivity.findViewById(R.id.resource_amount_wood);
+		TextView woodTV = (TextView)mActivity.findViewById(R.id.resource_amount_wood);
 		woodTV.setText(Utils.ConvertBigInt(resources.getmWood()));
 		
-		TextView ironTV= (TextView)mActivity.findViewById(R.id.resource_amount_iron);
+		TextView ironTV = (TextView)mActivity.findViewById(R.id.resource_amount_iron);
 		ironTV.setText(Utils.ConvertBigInt(resources.getmIron()));
 		
-		TextView wheatTV= (TextView)mActivity.findViewById(R.id.resource_amount_grain);
+		TextView wheatTV = (TextView)mActivity.findViewById(R.id.resource_amount_grain);
 		wheatTV.setText(Utils.ConvertBigInt(resources.getmWheat()));
 
 		mHandler.postDelayed(this, 1000);	

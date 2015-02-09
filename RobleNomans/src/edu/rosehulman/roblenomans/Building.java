@@ -3,53 +3,45 @@ package edu.rosehulman.roblenomans;
 import java.util.Random;
 
 import android.R.drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.GroundOverlay;
-import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import edu.rosehulman.roblenomans.R.string;
-
-public class Building{
+public class Building implements Parcelable{
 	
-	private MarkerOptions mMarkerOptions;
-	private Marker mMarker;
-	private int mID;
-
-	public Building() {
-		LatLng NEWARK = new LatLng(0,0);
-		mMarkerOptions = new MarkerOptions();
-		Random r = new Random();
-		int resource = r.nextInt(3);
-		switch(resource){
-			case 0:
-				resource = drawable.star_big_on;
-				break;
-			case 1:
-				resource = drawable.ic_media_play;
-				break;
-			case 2:
-				resource = drawable.ic_menu_rotate;
-				break;
-			default:
-				resource = drawable.arrow_up_float;
-				break;
+	public enum BuildingTypeID{
+		IronMine, Forester, Barracks
+	}
+	
+	protected MarkerOptions mMarkerOptions;
+	protected Marker mMarker;
+	protected BuildingTypeID mID;
+	protected int mLevel;
+	
+	public static final Parcelable.Creator<Building> CREATOR = new Parcelable.Creator<Building>() {
+		public Building createFromParcel(Parcel in) {
+			return new Building(in);
 		}
-		mMarkerOptions.icon(BitmapDescriptorFactory.fromResource(resource));
-		mMarkerOptions.position(NEWARK);
+		public Building[] newArray(int size) {
+			return new Building[size];
+		}
+	};
+	
+	public Building(){
+		mMarkerOptions = new MarkerOptions();
+		mLevel = 1;
 	}
 	
-	public Building(LatLng position, int id) {
-		mMarkerOptions = new MarkerOptions();
-		mMarkerOptions.icon(BitmapDescriptorFactory.fromResource(getBuildingDrawableResourceID(id)));
-		mMarkerOptions.position(position);
-		mID = id;
-	}
+    public Building(Parcel in) {
+    	mMarkerOptions = in.readParcelable(null);
+    	mMarker = (Marker) in.readValue(null);
+    	mID = (BuildingTypeID) in.readSerializable();
+    	mLevel = in.readInt();
+    }
 	
 	public MarkerOptions getMarkerOptions(){
 		return mMarkerOptions;
@@ -84,26 +76,17 @@ public class Building{
 	}
 	
 	public int getBuildingTitleResourceID(){
-		switch(mID){
-			case 0:
-				return R.string.iron_mine_name;
-			case 1:
-				return R.string.forester_name;
-			case 2:
-				return R.string.barracks_name;
-			default:
-				Log.d("NR", "Building " + mID + " not found.");
-				return 0;
-		}
+		Log.d("NR", "Building " + mID + " not found.");
+		return 0;
 	}
 	
-	public static int getBuildingDrawableResourceID(int buildingID){
+	public static int getBuildingDrawableResourceID(BuildingTypeID buildingID){
 		switch(buildingID){
-			case 0:
+			case IronMine:
 				return drawable.star_big_on;
-			case 1:
+			case Forester:
 				return drawable.ic_menu_help;
-			case 2:
+			case Barracks:
 				return drawable.ic_menu_camera;
 			default:
 				Log.d("NR", "Building " + buildingID + " not found.");
@@ -112,17 +95,42 @@ public class Building{
 	}
 	
 	public int getBuildingDrawableResourceID(){
-		switch(mID){
-			case 0:
-				return drawable.star_big_on;
-			case 1:
-				return drawable.ic_menu_help;
-			case 2:
-				return drawable.ic_menu_camera;
-			default:
-				Log.d("NR", "Building " + mID + " not found.");
-				return 0;
-		}
+		Log.d("NR", "Building " + mID + " not found.");
+		return 0;
+	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(mMarkerOptions, flags);
+		dest.writeValue(mMarker);
+		dest.writeSerializable(mID);
+		dest.writeInt(mLevel);
+	}
+	
+	public long[] getCost(){
+		return new long[4];
+	}
+
+	public void upgrade() {
+		mLevel++;
+	}
+
+	public boolean isUpgradable() {
+		return false;
+	}
+
+	public int getLevel() {
+		return mLevel;
+	}
+	
+	public long[] getIncome(){
+		return new long[4];
 	}
 
 }

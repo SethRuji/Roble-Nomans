@@ -1,5 +1,7 @@
 package edu.rosehulman.roblenomans;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -53,9 +55,9 @@ public class ResourceEngine implements Runnable {
 	private long mWheat= 10;
 	
 	private long goldRate= 100;
-	private long ironRate= 1;
-	private long woodRate= 2;
-	private long wheatRate= 1;
+	private long ironRate= 0;
+	private long woodRate= 0;
+	private long wheatRate= 0;
 	private Handler h;
 	
 	private TextView mIronTV;
@@ -93,4 +95,59 @@ public class ResourceEngine implements Runnable {
 		mWoodTV.setText(mWood+"");
 		mWheatTV.setText(mWheat+"");
 	}
+	
+	public void payResources(long[] ammounts){
+		long gold, wood, iron, wheat;
+		try {
+			gold = ammounts[0];
+			wood = ammounts[1];
+			iron = ammounts[2];
+			wheat = ammounts[3];
+		} catch(Exception e){
+			Log.d("AdjustResources", "Wrong argument sent to pay resources");
+			return;
+		}
+
+		mGold -= gold;
+		mWood -= wood;
+		mIron -= iron;
+		mWheat -= wheat;
+	}
+	
+	public boolean canAfford(long[] ammounts){
+		long gold, wood, iron, wheat;
+		try {
+			gold = ammounts[0];
+			wood = ammounts[1];
+			iron = ammounts[2];
+			wheat = ammounts[3];
+		} catch(Exception e){
+			Log.d("AdjustResources", "Wrong argument sent to can afford");
+			return false;
+		}
+		
+		if(mGold < gold || mWood < wood || mIron < iron || mWheat < wheat)
+			return false;
+		
+		return true;
+	}
+	
+	public void setResourceRates(long[] newRates){
+		long gold, wood, iron, wheat;
+		try {
+			gold = newRates[0];
+			wood = newRates[1];
+			iron = newRates[2];
+			wheat = newRates[3];
+		} catch(Exception e){
+			Log.d("AdjustResources", "Wrong argument sent to set resource rates");
+			return;
+		}
+		
+		goldRate = gold;
+		woodRate = wood;
+		ironRate = iron;
+		wheatRate = wheat;
+	}
+
 }
