@@ -14,9 +14,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.internal.mg;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -32,8 +35,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
+import edu.rosehulman.roblenomans.Barracks;
 import edu.rosehulman.roblenomans.Building;
+import edu.rosehulman.roblenomans.Forester;
 import edu.rosehulman.roblenomans.GameState;
+import edu.rosehulman.roblenomans.IronMine;
 import edu.rosehulman.roblenomans.NavigationDrawerFragment;
 import edu.rosehulman.roblenomans.R;
 import edu.rosehulman.roblenomans.ResourceBarFragment;
@@ -43,6 +49,7 @@ import edu.rosehulman.roblenomans.contentfrags.MainResourceFragment;
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnMapReadyCallback{
 	
+	private static final String BUILDINGS_LIST_KEY = "BuildingsList";
 	private MapFragment mMapFragment;
 	private ArrayList<Building> mBuildings;
 	private String[] mBuildingNames;
@@ -86,17 +93,27 @@ public class MainActivity extends Activity
         
         ft.commit(); 
         
-        mGame= new GameState();
-        
         mResourceUIHandler = new Handler();
-        mResourceUIHandler.postDelayed(new ResourceUIThread(this, mResourceUIHandler), 1000);        		
+        mResourceUIHandler.postDelayed(new ResourceUIThread(this, mResourceUIHandler), 1000);    
         
-        mMapFragment.getMapAsync(this);
+		mGame= new GameState();
         
-        mBuildings = new ArrayList<Building>();
+		if(savedInstanceState != null && savedInstanceState.containsKey(BUILDINGS_LIST_KEY)){
+			mBuildings = savedInstanceState.getParcelableArrayList(BUILDINGS_LIST_KEY);
+		} else {
+			mBuildings = new ArrayList<Building>();
+		}
         
         mBuildingNames = getResources().getStringArray(R.array.buildingNames);
+        
+        mMapFragment.getMapAsync(this);
     }
+    
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+	    super.onSaveInstanceState(savedInstanceState);
+		savedInstanceState.putParcelableArrayList(BUILDINGS_LIST_KEY, mBuildings);
+	}
 
 
     @Override
@@ -108,6 +125,7 @@ public class MainActivity extends Activity
     		Toast.makeText(MainActivity.this, "buildings", Toast.LENGTH_SHORT).show();
     		if(mMapFragment!=null){
     			mainContentFrag=mMapFragment;
+    			mMapFragment.getMapAsync(this);
     		}
     		break;
     	case 1://attack
@@ -264,13 +282,34 @@ public class MainActivity extends Activity
 				public Dialog onCreateDialog(Bundle savedInstanceState) {
 					AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
 
-					String title = getString(building.getBuildingTitleResourceID());
+					String title = getString(building.getBuildingTitleResourceID()) + " Level " + building.getLevel();
 					
 					b.setTitle(title);
 					
 					b.setNegativeButton(string.cancel, null);
 					
-					b.setPositiveButton(string.ok, null);
+					b.setPositiveButton(string.ok, new OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							if(building.isUpgradable()){
+								long cost[] = building.getCost();
+								
+								if(mGame.getmResourceEngine().canAfford(cost)){
+									mGame.getmResourceEngine().payResources(cost);
+									building.upgrade();
+									updateResourceRate();
+								}
+							}
+						}
+					});
+
+					if(building.isUpgradable()){
+						long[] cost = building.getCost();
+						b.setMessage("Gold: " + cost[0] + "\tWood: " + cost[1] + "\nIron: " + cost[2] + "\tWheat: " + cost[3]);
+					}
+					else
+						b.setMessage("Building is at max level");
 					
 					return b.create();
 				}
@@ -292,9 +331,25 @@ public class MainActivity extends Activity
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						Building b = new Building(point, which);
+						Building b;
+						switch(which){
+							case 0:
+								b = new IronMine(point);
+								break;
+							case 1:
+								b = new Forester(point);
+								break;
+							case 2:
+								b = new Barracks(point);
+								break;
+							default:
+								b = new Building();
+								break;
+						}
+						
 						mBuildings.add(b);
 						b.setMarker(mMap.addMarker(b.getMarkerOptions()));
+						updateResourceRate();
 					}
 				});
 				
@@ -303,5 +358,18 @@ public class MainActivity extends Activity
 		};
 		
 		df.show(getFragmentManager(), "build");
+	}
+	
+	public void updateResourceRate(){
+		long[] allRates = {0, 0, 0, 0};
+		for (Building b : mBuildings){
+			long[] rate = b.getIncome();
+			
+			for(int i = 0; i < 4; i++){
+				allRates[i] += rate[i];
+			}
+		}
+		
+		mGame.getmResourceEngine().setResourceRates(allRates);
 	}
 }
