@@ -15,9 +15,14 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.location.Criteria;
+import android.location.GpsStatus.Listener;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -71,7 +77,7 @@ public class MainActivity extends Activity
 	public GameState mGame;
 
 	private Handler mResourceUIHandler;
-
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -253,6 +259,7 @@ public class MainActivity extends Activity
 
 	@Override
 	public void onMapReady(GoogleMap map) {
+		setUpMap(map);
 		mMap = map;
 		ArrayList<Building> buildings= mGame.getBuildings();
 		for(Building b : buildings){
@@ -276,6 +283,54 @@ public class MainActivity extends Activity
 				placeBuilding(point);
 			}
 		});
+		
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        
+        locationManager.addGpsStatusListener(new Listener() {
+			
+			@Override
+			public void onGpsStatusChanged(int event) {
+				setUpMap(mMap);
+			}
+		});
+	}
+	
+	private void setUpMap(GoogleMap googleMap) {
+	    // Enable MyLocation Layer of Google Map
+	    googleMap.setMyLocationEnabled(true);
+
+
+
+	    // Show the current location in Google Map        
+	    googleMap.moveCamera(CameraUpdateFactory.newLatLng(getLocation()));
+
+	    // Zoom in the Google Map
+	    googleMap.animateCamera(CameraUpdateFactory.zoomTo(18));
+	}
+	
+	public LatLng getLocation(){
+	    // Get LocationManager object from System Service LOCATION_SERVICE
+	    LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+	    // Create a criteria object to retrieve provider
+	    Criteria criteria = new Criteria();
+
+	    // Get the name of the best provider
+	    String provider = locationManager.getBestProvider(criteria, true);
+
+	    // Get Current Location
+	    Location myLocation = locationManager.getLastKnownLocation(provider);
+
+	    // Get latitude of the current location
+	    double latitude = myLocation.getLatitude();
+
+	    // Get longitude of the current location
+	    double longitude = myLocation.getLongitude();
+
+	    // Create a LatLng object for the current location
+	    LatLng latLng = new LatLng(latitude, longitude);      
+	    
+	    return latLng;
 	}
 
 	protected void displayBuildingDialog(final Building building) {

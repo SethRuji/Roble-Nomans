@@ -52,6 +52,7 @@ $RECYCLE.BIN/
 # Generated files
 bin/
 gen/
+R.java
 
 # Gradle files
 .gradle/
