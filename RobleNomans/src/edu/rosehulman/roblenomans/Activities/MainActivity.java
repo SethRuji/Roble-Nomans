@@ -33,13 +33,16 @@ import android.widget.Toast;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationChangeListener;
 import com.google.android.gms.maps.LocationSource.OnLocationChangedListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 
 import edu.rosehulman.roblenomans.Barracks;
@@ -80,6 +83,8 @@ public class MainActivity extends Activity
 	public GameState mGame;
 
 	private Handler mResourceUIHandler;
+	
+	private Location mLastLocation;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -286,9 +291,10 @@ public class MainActivity extends Activity
 				placeBuilding(point);
 			}
 		});
-	
-	    map.setOnMyLocationChangeListener(this);
+		
+		map.setOnMyLocationChangeListener(this);
 	}
+	
 	
 	private void setUpMap(GoogleMap googleMap) {
 	    // Enable MyLocation Layer of Google Map
@@ -414,7 +420,14 @@ public class MainActivity extends Activity
 
 	@Override
 	public void onMyLocationChange(Location arg0) {
-		setUpMap(mMap);
+		if(mLastLocation == null){
+			mLastLocation = arg0;
+		}
+		//Toast.makeText(MainActivity.this, ""+arg0.distanceTo(mLastLocation), Toast.LENGTH_SHORT).show();
+		if(arg0.distanceTo(mLastLocation) > 5){
+			mLastLocation = arg0;
+			setUpMap(mMap);
+		}
 	}
 	
 
