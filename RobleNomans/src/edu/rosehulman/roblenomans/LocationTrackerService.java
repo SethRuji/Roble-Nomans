@@ -12,7 +12,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class LocationTrackerService extends Service{
-	protected static final String TAG_LOC_TRACKER = "TAG_LOC_TRACKER";	
+	protected static final String TAG_LOC_TRACKER = "SLR";
+	private LocationBroadcastReceiver mLocReceiver= new LocationBroadcastReceiver();	
 		
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -24,6 +25,7 @@ public class LocationTrackerService extends Service{
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		Log.d(TAG_LOC_TRACKER, "tracker service created");
+				
 		super.onCreate();
 	}
 	
@@ -31,24 +33,10 @@ public class LocationTrackerService extends Service{
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		// TODO Auto-generated method stub
 		Log.d(TAG_LOC_TRACKER, "tracker service started");
-		return super.onStartCommand(intent, flags, startId);
-	}
+		
+		super.onStartCommand(intent, flags, startId);
+		mLocReceiver.setUpTimer(LocationTrackerService.this);
+		return 1;
+	}	
 
-	private class LocationBroadcastReceiver extends BroadcastReceiver{
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			
-		}
-
-	}
-	public class autostart extends BroadcastReceiver{		
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			Intent locTrackerIntent = new Intent(context, LocationTrackerService.class);
-			context.startService(locTrackerIntent);
-			Log.d(TAG_LOC_TRACKER, "Started autostart location tracking service");
-		}		
-	}
 }

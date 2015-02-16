@@ -15,6 +15,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.GpsStatus.Listener;
 import android.location.Location;
@@ -22,7 +23,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,10 +44,12 @@ import edu.rosehulman.roblenomans.Building;
 import edu.rosehulman.roblenomans.Forester;
 import edu.rosehulman.roblenomans.GameState;
 import edu.rosehulman.roblenomans.IronMine;
+import edu.rosehulman.roblenomans.LocationTrackerService;
 import edu.rosehulman.roblenomans.NavigationDrawerFragment;
 import edu.rosehulman.roblenomans.R;
 import edu.rosehulman.roblenomans.ResourceBarFragment;
 import edu.rosehulman.roblenomans.ResourceUIThread;
+import edu.rosehulman.roblenomans.ServerManager;
 import edu.rosehulman.roblenomans.contentfrags.MainResourceFragment;
 import edu.rosehulman.roblenomans.contentfrags.MainSettingFragment;
 import edu.rosehulman.roblenomans.contentfrags.MainUnitsFragment;
@@ -109,6 +111,9 @@ public class MainActivity extends Activity
         mBuildingNames = getResources().getStringArray(R.array.buildingNames);
         
         mMapFragment.getMapAsync(this);
+        
+//        Intent locationIntent = new Intent(this, LocationTrackerService.class);
+//        startService(locationIntent);
     }
     
 	@Override
@@ -284,22 +289,23 @@ public class MainActivity extends Activity
 			}
 		});
 		
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+		
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);        
         
         locationManager.addGpsStatusListener(new Listener() {
 			
 			@Override
 			public void onGpsStatusChanged(int event) {
 				setUpMap(mMap);
+				ServerManager.sendLocation(getLocation());
 			}
 		});
 	}
 	
+
 	private void setUpMap(GoogleMap googleMap) {
 	    // Enable MyLocation Layer of Google Map
 	    googleMap.setMyLocationEnabled(true);
-
-
 
 	    // Show the current location in Google Map        
 	    googleMap.moveCamera(CameraUpdateFactory.newLatLng(getLocation()));
