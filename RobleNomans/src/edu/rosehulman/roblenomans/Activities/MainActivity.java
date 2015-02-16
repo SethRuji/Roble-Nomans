@@ -30,13 +30,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMyLocationChangeListener;
+import com.google.android.gms.maps.LocationSource.OnLocationChangedListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 
 import edu.rosehulman.roblenomans.Barracks;
@@ -55,7 +61,7 @@ import edu.rosehulman.roblenomans.contentfrags.MainSettingFragment;
 import edu.rosehulman.roblenomans.contentfrags.MainUnitsFragment;
 
 public class MainActivity extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnMapReadyCallback{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnMapReadyCallback, OnMyLocationChangeListener{
 	
 	public static final String BUILDINGS_LIST_KEY = "BuildingsList";
 	public static final String UNITS_LIST_KEY = "UnitsList";
@@ -79,6 +85,8 @@ public class MainActivity extends Activity
 	public GameState mGame;
 
 	private Handler mResourceUIHandler;
+	
+	private Location mLastLocation;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -289,7 +297,6 @@ public class MainActivity extends Activity
 			}
 		});
 		
-		
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);        
         
         locationManager.addGpsStatusListener(new Listener() {
@@ -421,6 +428,18 @@ public class MainActivity extends Activity
 		};
 		
 		df.show(getFragmentManager(), "build");
+	}
+
+	@Override
+	public void onMyLocationChange(Location arg0) {
+		if(mLastLocation == null){
+			mLastLocation = arg0;
+		}
+		//Toast.makeText(MainActivity.this, ""+arg0.distanceTo(mLastLocation), Toast.LENGTH_SHORT).show();
+		if(arg0.distanceTo(mLastLocation) > 5){
+			mLastLocation = arg0;
+			setUpMap(mMap);
+		}
 	}
 	
 
