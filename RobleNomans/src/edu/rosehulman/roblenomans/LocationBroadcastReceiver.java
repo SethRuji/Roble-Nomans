@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -17,17 +18,16 @@ public class LocationBroadcastReceiver extends BroadcastReceiver{
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.d(TAG_LOC_TRACKER, "broadcast received");
-		MainActivity c = (MainActivity) context.getApplicationContext();
-		LatLng loc= c.getLocation();
-		loc.toString();
+		Context c= context.getApplicationContext();		
+		LatLng loc= MainActivity.getLocation(c);
+		Log.d(TAG_LOC_TRACKER, loc.toString());
 	}
 
 	public void setUpTimer(Context context) {
+		Log.d(TAG_LOC_TRACKER, "in setup Timer");
 		AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, LocationBroadcastReceiver.class);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
-//        am.setRepeating(AlarmManager.ELAPSED_REALTIME, System.currentTimeMillis(), AlarmManager.INTERVAL_HOUR, pi); // Millisec * Second * Minute
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 10000, pi); // Millisec * Second * Minute
+        am.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime()+1000, 10000, pi); // Millisec * Second * Minute
 	}
 }
