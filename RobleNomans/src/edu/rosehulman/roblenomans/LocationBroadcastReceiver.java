@@ -18,11 +18,9 @@ public class LocationBroadcastReceiver extends BroadcastReceiver{
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.d(TAG_LOC_TRACKER, "broadcast received");
-//		MainActivity c = (MainActivity) context.getApplicationContext();		
-//		LatLng loc= ((MainActivity)context).getLocation();
-//		loc.toString();
-//		Log.d(TAG_LOC_TRACKER, loc.toString());
+		Context c= context.getApplicationContext();		
+		LatLng loc= MainActivity.getLocation(c);
+		Log.d(TAG_LOC_TRACKER, loc.toString());
 	}
 
 	public void setUpTimer(Context context) {
