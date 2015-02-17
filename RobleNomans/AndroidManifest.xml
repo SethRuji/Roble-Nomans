@@ -26,8 +26,8 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >     
-        <!--  <service android:name="edu.rosehulman.roblenomans.LocationTrackerService"></service>
-        <receiver android:name="edu.rosehulman.roblenomans.LocationBroadcastReceiver"></receiver>-->       
+        <service android:name="edu.rosehulman.roblenomans.LocationTrackerService"></service>
+        <receiver android:name="edu.rosehulman.roblenomans.LocationBroadcastReceiver"></receiver>       
         
         <activity
             android:name=".Activities.MainActivity"

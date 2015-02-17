@@ -120,8 +120,8 @@ public class MainActivity extends Activity
         
         mMapFragment.getMapAsync(this);
         
-//        Intent locationIntent = new Intent(this, LocationTrackerService.class);
-//        startService(locationIntent);
+        Intent locationIntent = new Intent(this, LocationTrackerService.class);
+        startService(locationIntent);
     }
     
 	@Override
