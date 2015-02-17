@@ -2,6 +2,7 @@ package edu.rosehulman.roblenomans.Activities;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import android.R.string;
 import android.annotation.SuppressLint;
@@ -13,6 +14,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -39,6 +41,7 @@ import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationChangeListener;
 import com.google.android.gms.maps.LocationSource.OnLocationChangedListener;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -63,8 +66,10 @@ import edu.rosehulman.roblenomans.contentfrags.MainUnitsFragment;
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnMapReadyCallback, OnMyLocationChangeListener{
 	
+	private static final int DEFAULT_CAMERA_ZOOM_LEVEL = 20;
 	public static final String BUILDINGS_LIST_KEY = "BuildingsList";
 	public static final String UNITS_LIST_KEY = "UnitsList";
+	protected static final double BUILDING_SEPERATION_DISTANCE = .3;
 	
 	private MapFragment mMapFragment;
 	private String[] mBuildingNames;
@@ -293,6 +298,20 @@ public class MainActivity extends Activity
 			
 			@Override
 			public void onMapLongClick(LatLng point) {
+				ArrayList<Building> buildings = mGame.getBuildings();
+				for(Building b : buildings){
+					LatLng pos = b.getMarker().getPosition();
+					
+					int R = 6371; // km
+					double x = (pos.longitude - point.longitude) * Math.cos((point.latitude + pos.latitude) / 2);
+					double y = (pos.latitude - point.latitude);
+					double distance = Math.sqrt(x * x + y * y) * R;
+					
+					if(distance < BUILDING_SEPERATION_DISTANCE){
+						return;
+					}
+				}
+				
 				placeBuilding(point);
 			}
 		});
@@ -318,32 +337,38 @@ public class MainActivity extends Activity
 	    googleMap.moveCamera(CameraUpdateFactory.newLatLng(getLocation()));
 
 	    // Zoom in the Google Map
-	    googleMap.animateCamera(CameraUpdateFactory.zoomTo(18));
+	    googleMap.animateCamera(CameraUpdateFactory.zoomTo(DEFAULT_CAMERA_ZOOM_LEVEL));
 	}
 	
 	public LatLng getLocation(){
-	    // Get LocationManager object from System Service LOCATION_SERVICE
-	    LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+		LatLng latLng;
 
-	    // Create a criteria object to retrieve provider
-	    Criteria criteria = new Criteria();
+		try {
+			// Get LocationManager object from System Service LOCATION_SERVICE
+			LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
 
-	    // Get the name of the best provider
-	    String provider = locationManager.getBestProvider(criteria, true);
+			// Create a criteria object to retrieve provider
+			Criteria criteria = new Criteria();
 
-	    // Get Current Location
-	    Location myLocation = locationManager.getLastKnownLocation(provider);
+			// Get the name of the best provider
+			String provider = locationManager.getBestProvider(criteria, true);
 
-	    // Get latitude of the current location
-	    double latitude = myLocation.getLatitude();
+			// Get Current Location
+			Location myLocation = locationManager.getLastKnownLocation(provider);
 
-	    // Get longitude of the current location
-	    double longitude = myLocation.getLongitude();
+			// Get latitude of the current location
+			double latitude = myLocation.getLatitude();
 
-	    // Create a LatLng object for the current location
-	    LatLng latLng = new LatLng(latitude, longitude);      
-	    
-	    return latLng;
+			// Get longitude of the current location
+			double longitude = myLocation.getLongitude();
+
+			// Create a LatLng object for the current location
+			latLng = new LatLng(latitude, longitude);     
+		} catch (Exception e){
+			latLng = new LatLng(0.0, 0.0);
+		}
+
+		return latLng;
 	}
 
 	protected void displayBuildingDialog(final Building building) {
