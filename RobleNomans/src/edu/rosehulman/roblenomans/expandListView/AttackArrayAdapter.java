@@ -19,6 +19,9 @@ package edu.rosehulman.roblenomans.expandListView;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -28,6 +31,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,6 +46,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import edu.rosehulman.roblenomans.R;
 import edu.rosehulman.roblenomans.Activities.MainActivity;
+import edu.rosehulman.roblenomans.contentfrags.MainAttackFragment;
 import edu.rosehulman.roblenomans.units.Unit;
 import edu.rosehulman.roblenomans.units.UnitFactory;
 
@@ -132,7 +137,8 @@ public class AttackArrayAdapter extends ArrayAdapter<AttackExpandableListItem> {
 				int cost= mData.get(position).getCost();
 				if(act.mGame.getmResourceEngine().canAfford(new long[]{0,0,0, cost})){
 					act.mGame.getmResourceEngine().payResources(new long[]{0,0,0, cost});
-					Toast.makeText(getContext(), "Attacking user: "+ mData.get(position).getTitle(), Toast.LENGTH_LONG).show();
+					//Toast.makeText(getContext(), "Attacking user: "+ mData.get(position).getTitle(), Toast.LENGTH_LONG).show();
+					showResultsDialog(mData.get(position).getTitle());
 				}else{
 					Toast.makeText(getContext(), "Can't afford", Toast.LENGTH_LONG).show();
 				}
@@ -168,4 +174,28 @@ public class AttackArrayAdapter extends ArrayAdapter<AttackExpandableListItem> {
 
         return output;
     }
+    
+	
+	public void showResultsDialog(final String userToAttack){
+		DialogFragment df = new DialogFragment() {
+			@Override
+			public Dialog onCreateDialog(Bundle savedInstanceState) {
+				AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+				
+				View dialogView = getActivity().getLayoutInflater().inflate(R.layout.result_dialog, null);
+				
+				TextView tv = ((TextView) dialogView.findViewById(R.id.textViewPlayerAttacked));
+				
+				tv.setText(userToAttack);
+				
+				b.setView(dialogView);
+
+				b.setPositiveButton(android.R.string.ok, null);
+				
+				return b.create();
+			}
+		};
+		
+		df.show(((Activity)mContext).getFragmentManager(), "cheat");
+	}
 }

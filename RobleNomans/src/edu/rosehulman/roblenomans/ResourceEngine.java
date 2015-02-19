@@ -50,9 +50,9 @@ public class ResourceEngine implements Runnable {
 	public static final int ONE_SECOND=1000;
 	
 	private long mGold= 100000;
-	private long mIron= 3;
-	private long mWood= 10;
-	private long mWheat= 10;
+	private long mIron= 3000;
+	private long mWood= 1000;
+	private long mWheat= 1000;
 	
 	private long goldRate= 100;
 	private long ironRate= 0;
