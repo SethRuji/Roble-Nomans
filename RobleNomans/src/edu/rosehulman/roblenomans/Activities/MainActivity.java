@@ -2,7 +2,6 @@ package edu.rosehulman.roblenomans.Activities;
 
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import android.R.string;
 import android.annotation.SuppressLint;
@@ -32,19 +31,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.appspot.roble_nomans_debiruji.users.Users;
+import com.appspot.roble_nomans_debiruji.users.model.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationChangeListener;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.json.gson.GsonFactory;
 
 import edu.rosehulman.roblenomans.Barracks;
 import edu.rosehulman.roblenomans.Building;
@@ -57,6 +53,8 @@ import edu.rosehulman.roblenomans.R;
 import edu.rosehulman.roblenomans.ResourceBarFragment;
 import edu.rosehulman.roblenomans.ResourceUIThread;
 import edu.rosehulman.roblenomans.ServerManager;
+import edu.rosehulman.roblenomans.common.UserServer;
+import edu.rosehulman.roblenomans.common.UserServer.InsertQuoteTask;
 import edu.rosehulman.roblenomans.contentfrags.MainResourceFragment;
 import edu.rosehulman.roblenomans.contentfrags.MainSettingFragment;
 import edu.rosehulman.roblenomans.contentfrags.MainUnitsFragment;
@@ -68,6 +66,8 @@ public class MainActivity extends Activity
 	public static final String BUILDINGS_LIST_KEY = "BuildingsList";
 	public static final String UNITS_LIST_KEY = "UnitsList";
 	protected static final double BUILDING_SEPERATION_DISTANCE = .3;
+	public static final String USERNAME_KEY = "username_key";
+	public static final String USER_ENTITY_KEY = "USER_ENTITY_KEY";
 	
 	private MapFragment mMapFragment;
 	private String[] mBuildingNames;
@@ -89,13 +89,21 @@ public class MainActivity extends Activity
 
 	private Handler mResourceUIHandler;
 	
-	private Location mLastLocation;
-	
+	private Location mLastLocation;	
+	public UserServer mServer;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        if(savedInstanceState != null && savedInstanceState.containsKey(MainActivity.USERNAME_KEY)){
+        	mServer= new UserServer();
+			mServer.user.setUsername(savedInstanceState.getString(MainActivity.USERNAME_KEY));
+		}else{						
+			mServer= new UserServer();
+			mServer.new InsertQuoteTask().execute(mServer.user);
+		}
         
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         
@@ -117,16 +125,16 @@ public class MainActivity extends Activity
         mResourceUIHandler = new Handler();
         mResourceUIHandler.postDelayed(new ResourceUIThread(this, mResourceUIHandler), 1000);    
         
-		mGame= new GameState(savedInstanceState);
-        		
+		mGame= new GameState(savedInstanceState);        		
         
         mBuildingNames = getResources().getStringArray(R.array.buildingNames);
         
         mMapFragment.getMapAsync(this);
         
-        Intent locationIntent = new Intent(this, LocationTrackerService.class);
-        startService(locationIntent);
-        
+        Intent locationIntent = new Intent(this, LocationTrackerService.class);        
+        locationIntent.putExtra(USERNAME_KEY, mServer.user.getUsername());
+        locationIntent.putExtra(USER_ENTITY_KEY, mServer.user.getEntityKey());
+        startService(locationIntent);        
     }
     
 	@Override

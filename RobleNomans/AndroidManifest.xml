@@ -15,8 +15,9 @@
     <!-- My Location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
-	
+    <uses-permission android:name="android.permission.WAKE_LOCK" >
+    </uses-permission>
+
     <!-- Maps API needs OpenGL ES 2.0. -->
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -25,10 +26,13 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" >     
-        <service android:name="edu.rosehulman.roblenomans.LocationTrackerService"></service>
-        <receiver android:name="edu.rosehulman.roblenomans.LocationBroadcastReceiver"></receiver>       
-        
+        android:label="@string/app_name" >
+        <service android:name=".LocationTrackerService" >
+        </service>
+
+        <receiver android:name=".LocationBroadcastReceiver" >
+        </receiver>
+
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/app_name" >
@@ -36,7 +40,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>                       
+            </intent-filter>
         </activity>
 
         <meta-data
@@ -50,6 +54,27 @@
             android:name=".ResourceActivity"
             android:label="@string/title_activity_resource" >
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
     </application>
 
+    <!--
+     To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
+     option is required to comply with the Google+ Sign-In developer policies
+    -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <!-- To retrieve the account name (email) as part of sign-in: -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    
 </manifest>
+
+
