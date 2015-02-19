@@ -42,7 +42,6 @@ public class GameState {
 	}
 
 	public ArrayList<Building> getBuildings() {
-		// TODO Auto-generated method stub
 		return mBuildings;
 	}
 

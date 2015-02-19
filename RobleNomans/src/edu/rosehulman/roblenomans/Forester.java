@@ -7,7 +7,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class Forester extends Building {
 	
-	public final long[] BASE_INCOME = {0, 1, 0, 0};
+	public final long[] BASE_INCOME = {0, 1, 0, 1};
 	public final int MAX_LEVEL = 4;
 	private final long[][] COSTS = new long[][]{{10, 20, 10, 20},
 												{20, 40, 20, 40},

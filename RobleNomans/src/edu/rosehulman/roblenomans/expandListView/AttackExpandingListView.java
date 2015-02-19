@@ -41,7 +41,7 @@ import edu.rosehulman.roblenomans.R;
  * A custom listview which supports the preview of extra content corresponding to each cell
  * by clicking on the cell to hide and show the extra content.
  */
-public class ExpandingListView extends ListView {
+public class AttackExpandingListView extends ListView {
 
     private boolean mShouldRemoveObserver = false;
 
@@ -49,17 +49,17 @@ public class ExpandingListView extends ListView {
 
     private int[] mTranslate;
 
-    public ExpandingListView(Context context) {
+    public AttackExpandingListView(Context context) {
         super(context);
         init();
     }
 
-    public ExpandingListView(Context context, AttributeSet attrs) {
+    public AttackExpandingListView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public ExpandingListView(Context context, AttributeSet attrs, int defStyle) {
+    public AttackExpandingListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -75,7 +75,7 @@ public class ExpandingListView extends ListView {
     private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
-            AttackExpandableListItem viewObject = (AttackExpandableListItem)getItemAtPosition(getPositionForView
+            ExpandableListItem viewObject = (ExpandableListItem)getItemAtPosition(getPositionForView
                     (view));
             if (!viewObject.isExpanded()) {
                 expandView(view);
@@ -176,7 +176,7 @@ public class ExpandingListView extends ListView {
      */
 
     private void expandView(final View view) {
-        final AttackExpandableListItem viewObject = (AttackExpandableListItem)getItemAtPosition(getPositionForView
+        final ExpandableListItem viewObject = (ExpandableListItem)getItemAtPosition(getPositionForView
                 (view));
 
         /* Store the original top and bottom bounds of all the cells.*/
@@ -372,7 +372,7 @@ public class ExpandingListView extends ListView {
      */
 
      private void collapseView(final View view) {
-        final AttackExpandableListItem viewObject = (AttackExpandableListItem)getItemAtPosition
+        final ExpandableListItem viewObject = (ExpandableListItem)getItemAtPosition
                 (getPositionForView(view));
 
         /* Store the original top and bottom bounds of all the cells.*/

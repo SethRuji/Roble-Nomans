@@ -49,12 +49,13 @@ import edu.rosehulman.roblenomans.units.UnitFactory;
  * This is a custom array adapter used to populate the listview whose items will
  * expand to display extra content in addition to the default display.
  */
-public class CustomArrayAdapter extends ArrayAdapter<ExpandableListItem> {
+public class AttackArrayAdapter extends ArrayAdapter<AttackExpandableListItem> {
 
-    private List<ExpandableListItem> mData;
+    private List<AttackExpandableListItem> mData;
     private int mLayoutViewResourceId;
 	private Context mContext;
 	private String btnText;
+	private Button recruitBtn;
 
     public String getBtnText() {
 		return btnText;
@@ -64,10 +65,10 @@ public class CustomArrayAdapter extends ArrayAdapter<ExpandableListItem> {
 		this.btnText = btnText;
 	}
 
-	public CustomArrayAdapter(Context context, int layoutViewResourceId,
-                              List<ExpandableListItem> data) {
-        super(context, layoutViewResourceId, data);
-        mData = data;
+	public AttackArrayAdapter(Context context, int layoutViewResourceId,
+                              List<AttackExpandableListItem> mData2) {
+        super(context, layoutViewResourceId, mData2);
+        mData = mData2;
         mContext= context;
         mLayoutViewResourceId = layoutViewResourceId;
     }
@@ -82,7 +83,7 @@ public class CustomArrayAdapter extends ArrayAdapter<ExpandableListItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        final ExpandableListItem object = mData.get(position);
+        final AttackExpandableListItem object = mData.get(position);
 
         if(convertView == null) {
             LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
@@ -118,20 +119,24 @@ public class CustomArrayAdapter extends ArrayAdapter<ExpandableListItem> {
             expandingLayout.setVisibility(View.VISIBLE);
         }
         
-        Button recruitBtn= (Button) convertView.findViewById(R.id.button_recruit);
-        recruitBtn.setText(this.btnText);
+        recruitBtn= (Button) convertView.findViewById(R.id.button_recruit);
+        recruitBtn.setText(R.string.attack);
         recruitBtn.setTag(position);
         recruitBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {				
-				int position= (Integer)v.getTag();
+				int position= (Integer)v.getTag();										
 				
-				String unitType= mData.get(position).getTitle();
-				Unit newUnit= UnitFactory.createUnit(unitType);
+				MainActivity act= ((MainActivity)mContext);
+				int cost= mData.get(position).getCost();
+				if(act.mGame.getmResourceEngine().canAfford(new long[]{0,0,0, cost})){
+					act.mGame.getmResourceEngine().payResources(new long[]{0,0,0, cost});
+					Toast.makeText(getContext(), "Attacking user: "+ mData.get(position).getTitle(), Toast.LENGTH_LONG).show();
+				}else{
+					Toast.makeText(getContext(), "Can't afford", Toast.LENGTH_LONG).show();
+				}
 				
-				MainActivity act= ((MainActivity)mContext); 
-				act.mGame.addUnit(newUnit);
 			}
 		});
         
@@ -163,6 +168,4 @@ public class CustomArrayAdapter extends ArrayAdapter<ExpandableListItem> {
 
         return output;
     }
-
-
 }

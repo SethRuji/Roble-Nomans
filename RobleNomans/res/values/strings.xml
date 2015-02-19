@@ -28,5 +28,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="recruit">recruit</string>
     <string name="raw_username">username</string>
+    <string name="attack">Attack</string>
 
 </resources>

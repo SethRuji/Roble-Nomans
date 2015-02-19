@@ -55,6 +55,7 @@ import edu.rosehulman.roblenomans.ResourceUIThread;
 import edu.rosehulman.roblenomans.ServerManager;
 import edu.rosehulman.roblenomans.common.UserServer;
 import edu.rosehulman.roblenomans.common.UserServer.InsertQuoteTask;
+import edu.rosehulman.roblenomans.contentfrags.MainAttackFragment;
 import edu.rosehulman.roblenomans.contentfrags.MainResourceFragment;
 import edu.rosehulman.roblenomans.contentfrags.MainSettingFragment;
 import edu.rosehulman.roblenomans.contentfrags.MainUnitsFragment;
@@ -158,7 +159,8 @@ public class MainActivity extends Activity
     		}
     		break;    		
     	case 1://attack
-    		Toast.makeText(MainActivity.this, "attack", Toast.LENGTH_SHORT).show();    		
+    		Toast.makeText(MainActivity.this, "attack", Toast.LENGTH_SHORT).show();
+    		mainContentFrag= new MainAttackFragment();
     		break;	
     	case 2://resources
     		Toast.makeText(MainActivity.this, "resources", Toast.LENGTH_SHORT).show();
