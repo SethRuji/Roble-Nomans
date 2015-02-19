@@ -37,7 +37,7 @@ public class LocationBroadcastReceiver extends BroadcastReceiver{
 		if(usr!=null && server!=null){
 			usr.setLat(loc.latitude);
 			usr.setLon(loc.longitude);
-			server.new InsertQuoteTask().execute(usr);
+//			server.new InsertQuoteTask().execute(usr);
 		}
 	}
 	

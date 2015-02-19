@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import edu.rosehulman.roblenomans.R;
 import edu.rosehulman.roblenomans.expandListView.AttackArrayAdapter;
 import edu.rosehulman.roblenomans.expandListView.AttackExpandableListItem;
+import edu.rosehulman.roblenomans.expandListView.AttackExpandingListView;
 import edu.rosehulman.roblenomans.expandListView.ExpandableListItem;
 import edu.rosehulman.roblenomans.expandListView.ExpandingListView;
 
@@ -35,7 +36,7 @@ public class MainAttackFragment extends Fragment {
         AttackArrayAdapter adapter = new AttackArrayAdapter(getActivity(), R.layout.list_view_item, Arrays.asList(values));
 
         View unitsView = inflater.inflate(R.layout.fragment_attack, null);
-        ExpandingListView mListView= (ExpandingListView) unitsView.findViewById(R.id.attack_list_view);
+        AttackExpandingListView mListView= (AttackExpandingListView) unitsView.findViewById(R.id.attack_list_view);
         mListView.setAdapter(adapter);
         mListView.setDivider(null);
 		return mListView;

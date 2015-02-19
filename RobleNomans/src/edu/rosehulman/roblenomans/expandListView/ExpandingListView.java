@@ -75,7 +75,7 @@ public class ExpandingListView extends ListView {
     private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
-            AttackExpandableListItem viewObject = (AttackExpandableListItem)getItemAtPosition(getPositionForView
+            ExpandableListItem viewObject = (ExpandableListItem)getItemAtPosition(getPositionForView
                     (view));
             if (!viewObject.isExpanded()) {
                 expandView(view);
@@ -176,7 +176,7 @@ public class ExpandingListView extends ListView {
      */
 
     private void expandView(final View view) {
-        final AttackExpandableListItem viewObject = (AttackExpandableListItem)getItemAtPosition(getPositionForView
+        final ExpandableListItem viewObject = (ExpandableListItem)getItemAtPosition(getPositionForView
                 (view));
 
         /* Store the original top and bottom bounds of all the cells.*/
@@ -372,7 +372,7 @@ public class ExpandingListView extends ListView {
      */
 
      private void collapseView(final View view) {
-        final AttackExpandableListItem viewObject = (AttackExpandableListItem)getItemAtPosition
+        final ExpandableListItem viewObject = (ExpandableListItem)getItemAtPosition
                 (getPositionForView(view));
 
         /* Store the original top and bottom bounds of all the cells.*/

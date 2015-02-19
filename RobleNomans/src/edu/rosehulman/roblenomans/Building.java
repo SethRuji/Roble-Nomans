@@ -37,7 +37,7 @@ public class Building implements Parcelable{
 	}
 	
     public Building(Parcel in) {
-    	mMarkerOptions = in.readParcelable(null);
+    	mMarkerOptions = in.readParcelable(null);    	
     	mMarker = (Marker) in.readValue(null);
     	mID = (BuildingTypeID) in.readSerializable();
     	mLevel = in.readInt();

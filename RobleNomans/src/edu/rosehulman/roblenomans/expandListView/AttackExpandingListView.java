@@ -30,10 +30,8 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import edu.rosehulman.roblenomans.R;
 
@@ -75,7 +73,7 @@ public class AttackExpandingListView extends ListView {
     private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
-            ExpandableListItem viewObject = (ExpandableListItem)getItemAtPosition(getPositionForView
+            AttackExpandableListItem viewObject = (AttackExpandableListItem)getItemAtPosition(getPositionForView
                     (view));
             if (!viewObject.isExpanded()) {
                 expandView(view);
@@ -176,7 +174,7 @@ public class AttackExpandingListView extends ListView {
      */
 
     private void expandView(final View view) {
-        final ExpandableListItem viewObject = (ExpandableListItem)getItemAtPosition(getPositionForView
+        final AttackExpandableListItem viewObject = (AttackExpandableListItem)getItemAtPosition(getPositionForView
                 (view));
 
         /* Store the original top and bottom bounds of all the cells.*/
@@ -372,7 +370,7 @@ public class AttackExpandingListView extends ListView {
      */
 
      private void collapseView(final View view) {
-        final ExpandableListItem viewObject = (ExpandableListItem)getItemAtPosition
+        final AttackExpandableListItem viewObject = (AttackExpandableListItem)getItemAtPosition
                 (getPositionForView(view));
 
         /* Store the original top and bottom bounds of all the cells.*/

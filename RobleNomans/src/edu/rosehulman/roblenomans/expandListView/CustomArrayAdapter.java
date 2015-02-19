@@ -119,7 +119,7 @@ public class CustomArrayAdapter extends ArrayAdapter<ExpandableListItem> {
         }
         
         Button recruitBtn= (Button) convertView.findViewById(R.id.button_recruit);
-        recruitBtn.setText(this.btnText);
+        recruitBtn.setText(R.string.recruit);
         recruitBtn.setTag(position);
         recruitBtn.setOnClickListener(new OnClickListener() {
 			

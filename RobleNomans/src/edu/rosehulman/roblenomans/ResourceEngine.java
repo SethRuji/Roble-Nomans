@@ -49,10 +49,10 @@ public class ResourceEngine implements Runnable {
 	private static final String RESOURCE_TAG = "RN Resource";
 	public static final int ONE_SECOND=1000;
 	
-	private long mGold= 100000;
-	private long mIron= 3000;
-	private long mWood= 1000;
-	private long mWheat= 1000;
+	private long mGold= 1000;
+	private long mIron= 300;
+	private long mWood= 100;
+	private long mWheat= 100;
 	
 	private long goldRate= 100;
 	private long ironRate= 0;
