@@ -16,6 +16,11 @@ public class MainResourceFragment extends Fragment {
 		return view;
 	}
 	private class UpdateUI extends AsyncTask<Void, Void, Void>{
-		
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			return null;
+		}		
 	}
 }
