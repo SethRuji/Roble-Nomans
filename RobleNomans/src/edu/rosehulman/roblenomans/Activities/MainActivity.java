@@ -32,6 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.appspot.roble_nomans_debiruji.users.Users;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
@@ -42,6 +43,8 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.json.gson.GsonFactory;
 
 import edu.rosehulman.roblenomans.Barracks;
 import edu.rosehulman.roblenomans.Building;
@@ -88,6 +91,7 @@ public class MainActivity extends Activity
 	
 	private Location mLastLocation;
 	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +126,7 @@ public class MainActivity extends Activity
         
         Intent locationIntent = new Intent(this, LocationTrackerService.class);
         startService(locationIntent);
+        
     }
     
 	@Override
