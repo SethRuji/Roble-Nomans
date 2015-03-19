@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BasketballJerseySR</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="start_name">RUJI</string>
+    <string name="start_number">42</string>
+    <string name="edit">Edit</string>
+    <string name="name">Name</string>
+    <string name="number">Number</string>
+    <string name="red_jersey">Red Jersey</string>
+    <string name="blue_jersey">Blue Jersey</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_activity_jersey_edit">JerseyEditActivity</string>
+
+</resources>

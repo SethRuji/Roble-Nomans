@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <ImageView
+        android:id="@+id/imageView_jersey"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:contentDescription="@string/red_jersey"
+        android:scaleType="fitXY"
+        android:src="@drawable/red_jersey" />
+
+	<LinearLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:orientation="vertical" >
+
+	    <TextView
+	        android:id="@+id/jersey_nameTV"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:text="@string/start_name"
+	        android:textColor="#FFF"
+	        android:textSize="30dp" />
+
+	    <TextView
+	        android:id="@+id/jersey_numberTV"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:text="@string/start_number"
+	        android:textColor="#FFF"
+	        android:textSize="70dp" />
+
+	</LinearLayout>
+
+	<Button
+	    android:id="@+id/btn_edit"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="bottom|right"
+	    android:text="@string/edit" />
+    
+</FrameLayout>

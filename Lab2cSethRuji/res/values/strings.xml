@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lab2cSethRuji</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="reminder_name">Reminder Name</string>
+    <string name="done_buttonText">Done</string>
+	<string name="toast_text">Button pressed</string>
+</resources>

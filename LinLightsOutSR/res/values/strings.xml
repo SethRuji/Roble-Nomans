@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TextView</string>
+    <string name="gameText">Linear Lights Out</string>
+    <string name="winText">You win!</string>
+    <string name="newGameText">New Game</string>
+
+</resources>

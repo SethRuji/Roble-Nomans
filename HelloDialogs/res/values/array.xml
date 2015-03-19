@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="learning_methods_array">
+<item>@string/reading_web</item>
+<item>@string/lecture_demos</item>
+<item>@string/labs</item>
+<item>@string/exams</item>
+<item>@string/other</item>
+</string-array>
+</resources>

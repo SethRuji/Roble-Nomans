@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ticTactoeSR</string>
+    <string name="hello_world">Hello world!</string>
+	<string name="new_game_button">New Game</string>
+	<string name="x_turn">Xs turn</string>
+	<string name="o_turn">Os turn</string>
+	<string name="o_win">O wins</string>
+	<string name="x_win">x wins</string>
+	<string name="tie_game">Its a draw!</string>
+</resources>

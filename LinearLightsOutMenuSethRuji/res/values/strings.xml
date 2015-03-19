@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LinearLightsOutMenuSethRuji</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_text">Lights Out</string>
+    
+    <string name="title_activity_lights__out__about">Lights_Out_About</string>
+    <string name="title_activity_change_num_buttons">ChangeNumButtons</string>
+    <string name="buttons3">3 buttons</string>
+    <string name="buttons5">5 buttons</string>
+    <string name="buttons7">7 buttons</string>
+    <string name="buttons9">9 buttons</string>
+    <string name="title_activity_lights_out">LightsOutActivity</string>
+
+    
+    <string name="game_start">Make the buttons match</string>
+	<string name="game_one_move">1 move taken so far</string>
+	<string name="game_format">%1$d moves taken so far</string>
+	<string name="you_win">You Win!</string>
+	<string name="you_won_one_move">You won in 1 move!</string>
+	<string name="you_won_format">You won in %1$d moves!</string>
+	<string name="new_game">New Game</string>
+
+	
+    <string name="main_title">Lights Out</string>
+    <string name="play_button_start">Play with 7 buttons</string>
+    <string name="play_button_format">Play with %d buttons </string>
+    <string name="change_num_buttons_button">Change number of buttons</string>
+    <string name="about_button">About Lights Out</string>
+    <string name="exit_button">Exit</string>
+    <string name="about_description">Clicking a button toggles the state of that button and any neighboring buttons.  The goal is to make all the buttons match.</string>
+</resources>

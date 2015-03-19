@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HelloButtonSRuji</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="buttonText">Press Me!</string>
+    <string name="message">You have not clicked the button.</string>
+    <string name="message_format">you have clicked %d times.</string>
+	<string name="titleBar">HelloButtonSR</string>
+</resources>

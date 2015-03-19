@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/alert_dialogs"
+            android:textColor="@color/text_color"
+            android:textSize="20sp" >
+        </TextView>
+
+        <Button
+            android:id="@+id/dialog_button_ok"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_dialogs" >
+        </Button>
+
+        <Button
+            android:id="@+id/dialog_button_multiple_buttons"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/exit" >
+        </Button>
+
+        <Button
+            android:id="@+id/dialog_button_select_item"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/learning_methods" >
+        </Button>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/custom_dialog"
+            android:textColor="@color/text_color"
+            android:textSize="20sp" >
+        </TextView>
+
+        <Button
+            android:id="@+id/dialog_button_custom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rose_dialog" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

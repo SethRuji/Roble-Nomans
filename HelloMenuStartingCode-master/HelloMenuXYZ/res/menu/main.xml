@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.rosehulman.hellomenu.MainActivity" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings"/>
+    <item
+        android:id="@+id/help"
+        android:icon="@drawable/ic_action_help"
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_main_help"/>
+	<item
+        android:id="@+id/color"
+        android:icon="@drawable/ic_action_edit"
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_main_color">
+		<menu>
+			<group android:id="@+id/group_colors">
+				<item android:id="@+id/color_red"
+				    android:title="@string/menu_red_background"/>
+				<item android:id="@+id/color_blue"
+				    android:title="@string/menu_blue_background"/>
+			</group>
+		</menu>
+	</item>
+</menu>

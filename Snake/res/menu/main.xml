@@ -1,0 +1,29 @@
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/resume"
+            android:title="Resume"
+            android:icon="@drawable/ic_menu_rotate"
+            android:showAsAction="ifRoom"/>
+        <item android:id="@+id/speed" android:title="Change Speed"
+            android:showAsAction="ifRoom">
+            <menu>
+                <group android:id="@+id/speeds" android:checkableBehavior="single">
+                    <item android:id="@+id/slow" android:title="Slow"/>
+                    <item android:id="@+id/medium" android:title="Medium"/>
+                    <item android:id="@+id/fast" android:title="Fast"/>
+                </group>
+            </menu>
+        </item>
+        <item android:id="@+id/settings"
+            android:title="Settings"
+            android:showAsAction="ifRoom"/>
+        <item android:id="@+id/left_turn"
+            android:title="left turn"
+            android:icon="@drawable/ic_left_arrow"
+            android:showAsAction="always"/>
+        <item android:id="@+id/right_turn"
+            android:title="right turn"
+            android:icon="@drawable/ic_right_arrow"
+            android:showAsAction="always"/>
+        
+    </menu>

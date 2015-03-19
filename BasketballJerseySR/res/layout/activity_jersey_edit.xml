@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/editNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/name" />
+
+	<EditText
+	    android:id="@+id/editNumberET"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/editNumberTV"
+	    android:layout_centerHorizontal="true"
+	    android:ems="10" 
+	    android:inputType="text">
+
+	    <requestFocus />
+	</EditText>
+
+	<EditText
+	    android:id="@+id/editNameET"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/editNumberET"
+	    android:layout_alignRight="@+id/editNumberET"
+	    android:layout_below="@+id/editNameTV"
+	    android:ems="10" 
+	    android:inputType="text"/>
+
+	<TextView
+	    android:id="@+id/editNumberTV"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/editNameTV"
+	    android:layout_below="@+id/editNameET"
+	    android:layout_marginTop="18dp"
+	    android:text="@string/number" />
+
+	<ToggleButton
+	    android:id="@+id/jerseyToggle"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/editNumberTV"
+	    android:layout_below="@+id/editNumberET"
+	    android:textOff="@string/blue_jersey"
+	    android:textOn="@string/red_jersey" />
+
+	<Button
+	    android:id="@+id/btn_cancel"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignTop="@id/jerseyToggle"
+	    android:layout_toRightOf="@id/jerseyToggle"
+	    android:text="@string/cancel" />
+
+	<Button
+	    android:id="@+id/btn_ok"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/btn_cancel"
+	    android:layout_alignBottom="@+id/btn_cancel"
+	    android:layout_toRightOf="@+id/btn_cancel"
+	    android:text="@string/ok" />
+
+"
+</RelativeLayout>

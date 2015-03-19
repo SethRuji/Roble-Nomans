@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RoseHomeworkSR</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="enter_the_course">Enter the course</string>
+    <string name="enter_the_name_of_the_task">Enter the name of the task</string>
+    <string name="date_due">Date due</string>
+    <string name="add_task">Add Task</string>
+
+</resources>

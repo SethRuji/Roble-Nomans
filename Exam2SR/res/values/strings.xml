@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Exam2SR</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="add">Add</string>
+    <string name="name_hint">Enter a person\'s name</string>
+    <string name="add_title">Add your friend</string>
+    <string name="delete_title">Confirm Deletion</string>
+    <string name="delete_message">Are you sure you want to delete this friend?</string>
+    <string name="title_activity_message">My Friends</string>
+    <string name="message">random message</string>
+	<string name="choose">Choose your Friends</string>
+</resources>

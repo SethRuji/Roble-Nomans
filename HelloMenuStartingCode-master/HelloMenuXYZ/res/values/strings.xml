@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hello Menu XYZ</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_red_background">Red Background</string>
+    <string name="menu_blue_background">Blue Background</string>
+    <string name="menu_green_background">Green Background</string>
+    <string name="menu_context_title">Change font size</string>
+    <string name="menu_context_increase">Increase font size</string>
+    <string name="menu_context_decrease">Decrease font size</string>
+    <string name="menu_context_condensed_increase">Increase</string>
+    <string name="menu_context_condensed_decrease">Decrease</string>
+    <string name="title_activity_color">Colors</string>
+    <string name="activity_color_text_view">I have color!</string>
+    <string name="menu_main_help">Help</string>
+    <string name="menu_main_color">Choose a color</string>
+    <string name="menu_main_email">Send an email</string>
+    <string name="menu_context_subtitle">Click in the menu to the right</string>
+</resources>

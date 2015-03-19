@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Exam1SethRuji</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="App_title">Memory Tool by Seth Rujiraviriyapinyo</string>
+	<string name="record">Record a button sequence</string>
+	<string name="reset">Reset</string>
+	<string name="pressed">You pressed </string>
+</resources>

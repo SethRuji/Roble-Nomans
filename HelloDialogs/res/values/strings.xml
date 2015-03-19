@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, HelloDialogs!</string>
+    <string name="app_name">Dialogs</string>
+    <string name="alert_dialogs">AlertDialogs</string>
+    <string name="about_dialogs">About Dialogs</string>
+    <string name="about_description">This app shows the different types of dialogs available.</string>
+    <string name="exit">Exit</string>
+    <string name="toast_or_exit_question">Would you like to exit or get a Toast message?</string>
+    <string name="toast">Toast</string>
+    <string name="learning_methods">Learning Methods</string>
+    <string name="learning_methods_question">Which learning method helps you learn?</string>
+    <string name="rose_hulman">Rose-Hulman</string>
+    <string name="reading_web">Reading / Web</string>
+    <string name="lecture_demos">Lecture Demos</string>
+    <string name="labs">Labs</string>
+    <string name="exams">Exams</string>
+    <string name="other">Other</string>
+    <string name="done">Done</string>
+    <string name="custom_dialog">Custom Dialog Subclass</string>
+    <string name="rose_dialog">Rose Dialog</string>
+    <string name="rose_mascot">Fightin\' Engineers!</string>
+    <string name="welcome">Welcome</string>
+</resources>
